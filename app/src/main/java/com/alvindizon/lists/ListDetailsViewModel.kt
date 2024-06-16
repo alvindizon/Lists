@@ -1,5 +1,6 @@
 package com.alvindizon.lists
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,10 +19,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.random.Random
+import kotlin.random.nextLong
 
 data class ListDetailsUiState(
     val items: List<MyListItem>? = emptyList(),
-    val listId: Int? = null
+    val listId: Long? = null
 ) {
     companion object {
         val Empty = ListDetailsUiState()
@@ -34,7 +36,7 @@ class ListDetailsViewModel @Inject constructor(savedStateHandle: SavedStateHandl
     private val _uiState = MutableStateFlow(ListDetailsUiState.Empty)
     val uiState = _uiState.asStateFlow()
 
-    val listId: Int? = savedStateHandle["listId"]
+    val listId: Long? = savedStateHandle["listId"]
 
 
     init {
@@ -52,16 +54,16 @@ class ListDetailsViewModel @Inject constructor(savedStateHandle: SavedStateHandl
         _uiState.value.listId?.let { addItem(it) }
     }
 
-    private fun addItem(listId: Int) {
+    private fun addItem(listId: Long) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val randomGenerator = Random(System.currentTimeMillis())
-                val result = randomGenerator.nextInt(0, 1000)
+                val result = randomGenerator.nextLong(0, 1000)
                 val currentList = myListDao.getMyListById(listId = listId)!!
                 val items = listOf(
                     MyListItemEntity(listId = listId, itemName = "Item $result")
                 )
-                val combined = ListWithItem(myList = currentList, items = items)
+                val combined = currentList.copy(items = currentList.items + items)
                 myListDao.insertListWithItem(listOf(combined))
             }
         }

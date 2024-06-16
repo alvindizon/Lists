@@ -17,7 +17,7 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
         composable(route = "MyLists") {
             MyListsScreen(onListClick = { navController.navigate(route = "ListDetails/${it}") })
         }
-        composable(route = "ListDetails/{listId}", arguments = listOf(navArgument("listId") { type = NavType.IntType})) {
+        composable(route = "ListDetails/{listId}", arguments = listOf(navArgument("listId") { type = NavType.LongType})) {
             ListDetailsScreen(
                 onNavigationIconClick = {
                     navController.popBackStack()

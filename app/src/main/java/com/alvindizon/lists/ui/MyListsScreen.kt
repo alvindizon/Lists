@@ -24,7 +24,7 @@ import com.alvindizon.lists.MainViewModel
 
 @Composable
 fun MyListsScreen(
-    viewModel: MainViewModel = hiltViewModel(), onListClick: (Int) -> Unit
+    viewModel: MainViewModel = hiltViewModel(), onListClick: (Long) -> Unit
 ) {
     val state by viewModel.uiState.collectAsState()
     Scaffold(modifier = Modifier.fillMaxSize(), floatingActionButton = {

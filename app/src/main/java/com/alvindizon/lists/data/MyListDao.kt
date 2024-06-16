@@ -23,11 +23,11 @@ interface MyListDao {
     suspend fun insertItems(list: List<MyListItemEntity>)
 
     @Query("SELECT * FROM my_list WHERE listId LIKE :listId LIMIT 1")
-    suspend fun getMyListById(listId: Int): MyListEntity?
+    suspend fun getMyListById(listId: Long): ListWithItem?
 
     @Transaction
     @Query("SELECT * FROM my_list WHERE listId LIKE :listId LIMIT 1")
-    fun getMyListItemsById(listId: Int): Flow<ListWithItem>
+    fun getMyListItemsById(listId: Long): Flow<ListWithItem>
 
     @Transaction
     suspend fun insertListWithItem(list: List<ListWithItem>) {

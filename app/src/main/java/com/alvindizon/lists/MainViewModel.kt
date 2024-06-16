@@ -33,6 +33,8 @@ class MainViewModel @Inject constructor(private val dao: MyListDao) : ViewModel(
     private val _uiState = MutableStateFlow(MainUiState.Empty)
     val uiState = _uiState.asStateFlow()
 
+    var number: Long? = null
+
     init {
         dao.getAll()
             .onEach { list -> _uiState.update { state -> state.copy(list = list.map { it.toUiModel() }) } }
@@ -44,9 +46,14 @@ class MainViewModel @Inject constructor(private val dao: MyListDao) : ViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val randomGenerator = Random(System.currentTimeMillis())
-                val result = randomGenerator.nextInt(0, 1000)
-                val name = "MyList $result"
-                val list = MyListEntity(listId = result, name = name)
+                if (number == null) {
+                    number = randomGenerator.nextLong(0L, 1000L)
+                } else {
+                    number = number!! + 1
+                }
+
+                val name = "MyList $number"
+                val list = MyListEntity(listId = number!!, name = name)
                 dao.insertAll(list)
                 _uiState.update { state ->
                     state.copy(list = state.list?.toMutableList()?.apply { add(list.toUiModel()) })
