@@ -61,6 +61,12 @@ class MainViewModel @Inject constructor(private val dao: MyListDao) : ViewModel(
             }
         }
     }
+
+    fun deleteAll() {
+        viewModelScope.launch {
+            dao.delete()
+        }
+    }
 }
 
 fun MyListEntity.toUiModel() = MyList(

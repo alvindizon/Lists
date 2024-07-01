@@ -35,4 +35,7 @@ interface MyListDao {
         insertItems(list.flatMap { it.items })
     }
 
+    @Query("DELETE FROM my_list")
+    suspend fun delete()
+
 }
