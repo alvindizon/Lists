@@ -1,4 +1,4 @@
-package com.alvindizon.lists.data
+package com.alvindizon.lists.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -2,8 +2,8 @@ package com.alvindizon.lists.di
 
 import android.content.Context
 import androidx.room.Room
-import com.alvindizon.lists.data.MyListDao
-import com.alvindizon.lists.data.MyListDatabase
+import com.alvindizon.lists.data.room.MyListDao
+import com.alvindizon.lists.data.room.MyListDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

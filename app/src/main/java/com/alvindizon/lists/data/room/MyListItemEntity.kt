@@ -1,4 +1,4 @@
-package com.alvindizon.lists.data
+package com.alvindizon.lists.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

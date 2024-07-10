@@ -2,8 +2,8 @@ package com.alvindizon.lists
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alvindizon.lists.data.MyListDao
-import com.alvindizon.lists.data.MyListEntity
+import com.alvindizon.lists.data.room.MyListDao
+import com.alvindizon.lists.data.room.MyListEntity
 import com.alvindizon.lists.model.MyList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

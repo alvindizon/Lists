@@ -1,12 +1,11 @@
 package com.alvindizon.lists
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alvindizon.lists.data.ListWithItem
-import com.alvindizon.lists.data.MyListDao
-import com.alvindizon.lists.data.MyListItemEntity
+import com.alvindizon.lists.data.room.ListWithItem
+import com.alvindizon.lists.data.room.MyListDao
+import com.alvindizon.lists.data.room.MyListItemEntity
 import com.alvindizon.lists.model.MyListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +18,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.random.Random
-import kotlin.random.nextLong
 
 data class ListDetailsUiState(
     val items: List<MyListItem>? = emptyList(),
