@@ -4,4 +4,5 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kotlinXSerializationPlugin) apply false
+    alias(libs.plugins.sqlDelight) apply false
 }

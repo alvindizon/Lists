@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS ItemEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    listId INTEGER NOT NULL,
+    itemName TEXT NOT NULL,
+    FOREIGN KEY(listId) REFERENCES MyListEntity(listId)
+);
+
+insert:
+INSERT OR REPLACE INTO ItemEntity(
+id,
+listId,
+itemName
+)
+VALUES (nullif(?, 0),?,?);
+
+getItemsForList:
+SELECT * FROM ItemEntity
+WHERE listId = :listId;

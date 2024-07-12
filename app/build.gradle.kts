@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlinXSerializationPlugin)
+    alias(libs.plugins.sqlDelight)
 }
 
 android {
@@ -43,7 +44,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -86,6 +87,17 @@ dependencies {
     implementation(libs.kotlinXSerialization)
     implementation(libs.runtimeNavigationCompose)
     implementation(libs.hiltNavCompose)
+    implementation(libs.sqlDelightDriver)
+    implementation(libs.sqlDelightCoroutineExtensions)
 
 
+}
+
+sqldelight {
+    databases {
+        create("TestDatabase") {
+            packageName.set("com.alvindizon.lists.data.sqldelight")
+            schemaOutputDirectory.set(file("src/main/sqldelight/databases"))
+        }
+    }
 }

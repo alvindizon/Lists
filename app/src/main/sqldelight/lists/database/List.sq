@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS MyListEntity (
+    listId INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+insert:
+INSERT OR REPLACE INTO MyListEntity(
+listId,
+name
+)
+VALUES (?, ?);
+
+getMyListById:
+SELECT  * FROM MyListEntity
+WHERE listId = :listId
+LIMIT 1;
+
+delete:
+DELETE FROM MyListEntity;
+

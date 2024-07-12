@@ -2,8 +2,11 @@ package com.alvindizon.lists.di
 
 import android.content.Context
 import androidx.room.Room
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.alvindizon.lists.data.room.MyListDao
 import com.alvindizon.lists.data.room.MyListDatabase
+import com.alvindizon.lists.data.sqldelight.TestDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,4 +26,16 @@ object AppModule {
     @Provides
     @Singleton
     fun myListDao(database: MyListDatabase): MyListDao = database.myListDao()
+
+    @Provides
+    @Singleton
+    fun provideSqlDriver(@ApplicationContext context: Context): SqlDriver {
+        return AndroidSqliteDriver(TestDatabase.Schema, context, "my_list.db")
+    }
+
+    @Provides
+    @Singleton
+    fun provideTestDatabase(sqlDriver: SqlDriver): TestDatabase {
+        return TestDatabase(sqlDriver)
+    }
 }
