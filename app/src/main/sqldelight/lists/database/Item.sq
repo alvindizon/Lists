@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS ItemEntity (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     listId INTEGER NOT NULL,
     itemName TEXT NOT NULL,
-    FOREIGN KEY(listId) REFERENCES MyListEntity(listId)
+    FOREIGN KEY(listId) REFERENCES MyListEntity(listId) ON DELETE CASCADE
 );
 
 insert:
@@ -14,5 +14,6 @@ itemName
 VALUES (nullif(?, 0),?,?);
 
 getItemsForList:
-SELECT * FROM ItemEntity
-WHERE listId = :listId;
+SELECT ItemEntity.* FROM ItemEntity
+INNER JOIN MyListEntity ON MyListEntity.listId = ItemEntity.listId
+WHERE ItemEntity.listId = :listId;
