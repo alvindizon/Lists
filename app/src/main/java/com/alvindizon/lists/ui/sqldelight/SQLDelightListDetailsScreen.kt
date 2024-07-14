@@ -1,5 +1,6 @@
 package com.alvindizon.lists.ui.sqldelight
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -58,20 +60,24 @@ fun SQLDelightListDetailsScreen(
     ) { paddingValues ->
         ListDetailsContent(
             modifier = Modifier.padding(paddingValues),
-            state = state
+            state = state,
+            onDeleteClick = viewModel::onDeleteClick
         )
     }
 }
 
 
 @Composable
-private fun ListDetailsContent(modifier: Modifier = Modifier, state: ListDetailsUiState) {
+private fun ListDetailsContent(modifier: Modifier = Modifier, state: ListDetailsUiState, onDeleteClick:(Long) -> Unit ) {
     Box(modifier = modifier.fillMaxSize()) {
         state.items?.let { list ->
             LazyColumn {
                 items(list, key = { it.hashCode() }) { item ->
-                    Row(modifier = Modifier.padding(8.dp)) {
-                        Text(text = item.name)
+                    Row(modifier = Modifier.padding(8.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
+                        Text( text = item.name)
+                        Button(onClick = { onDeleteClick(item.itemId) }) {
+                            Text(text = item.name)
+                        }
                     }
                 }
             }

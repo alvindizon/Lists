@@ -62,8 +62,16 @@ class SQLDelightDetailsViewModel @Inject constructor(
             }
         }
     }
+
+    fun onDeleteClick(itemId: Long) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                testDataSource.deleteItemById(itemId)
+            }
+        }
+    }
 }
 
 fun List<ItemEntity>.toUiModel(): List<MyListItem> = map {
-    MyListItem(it.itemName)
+    MyListItem(it.itemName, it.id)
 }

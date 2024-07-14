@@ -7,5 +7,6 @@ data class MyList(
 )
 
 data class MyListItem(
-    val name: String
+    val name: String,
+    val itemId: Long
 )

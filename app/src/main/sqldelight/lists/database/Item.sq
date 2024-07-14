@@ -17,3 +17,6 @@ getItemsForList:
 SELECT ItemEntity.* FROM ItemEntity
 INNER JOIN MyListEntity ON MyListEntity.listId = ItemEntity.listId
 WHERE ItemEntity.listId = :listId;
+
+deleteById:
+DELETE FROM ItemEntity WHERE id = :id;

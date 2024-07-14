@@ -69,5 +69,5 @@ class ListDetailsViewModel @Inject constructor(savedStateHandle: SavedStateHandl
 }
 
 fun ListWithItem.toUiModel(): List<MyListItem> = items.map {
-    MyListItem(it.itemName)
+    MyListItem(it.itemName, it.id.toLong())
 }

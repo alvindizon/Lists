@@ -39,4 +39,10 @@ class TestDataSource @Inject constructor(private val testDatabase: TestDatabase)
     fun getItemsForList(listId: Long): Flow<List<ItemEntity>> =
         testDatabase.itemQueries.getItemsForList(listId).asFlow().mapToList(Dispatchers.IO)
 
+    suspend fun deleteItemById(itemId: Long) {
+        withContext(Dispatchers.IO) {
+            testDatabase.itemQueries.deleteById(itemId)
+        }
+    }
+
 }
