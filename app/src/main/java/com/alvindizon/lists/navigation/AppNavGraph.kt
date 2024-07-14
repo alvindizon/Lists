@@ -7,13 +7,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.alvindizon.lists.ui.ListDetailsScreen
-import com.alvindizon.lists.ui.MyListsScreen
+import com.alvindizon.lists.ui.landing.LandingScreen
+import com.alvindizon.lists.ui.room.ListDetailsScreen
+import com.alvindizon.lists.ui.room.MyListsScreen
 
 
 @Composable
 fun AppNavGraph(navController: NavHostController = rememberNavController()) {
-    NavHost(navController, startDestination = "MyLists") {
+    NavHost(navController, startDestination = "Landing") {
+        composable(route = "Landing") {
+            LandingScreen(onRoomClick = {
+                navController.navigate(route = "MyLists")
+            }, onSqlDelightClick = {})
+        }
         composable(route = "MyLists") {
             MyListsScreen(onListClick = { navController.navigate(route = "ListDetails/${it}") })
         }

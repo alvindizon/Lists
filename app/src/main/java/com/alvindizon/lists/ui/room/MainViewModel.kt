@@ -1,4 +1,4 @@
-package com.alvindizon.lists
+package com.alvindizon.lists.ui.room
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

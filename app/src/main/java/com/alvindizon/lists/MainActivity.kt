@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import com.alvindizon.lists.navigation.AppNavGraph
+import com.alvindizon.lists.ui.room.MainViewModel
 import com.alvindizon.lists.ui.theme.ListsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
