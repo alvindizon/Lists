@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.alvindizon.lists.ui.landing.LandingScreen
 import com.alvindizon.lists.ui.room.ListDetailsScreen
 import com.alvindizon.lists.ui.room.MyListsScreen
+import com.alvindizon.lists.ui.sqldelight.SQLDelightListsScreen
 
 
 @Composable
@@ -18,7 +19,9 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
         composable(route = "Landing") {
             LandingScreen(onRoomClick = {
                 navController.navigate(route = "MyLists")
-            }, onSqlDelightClick = {})
+            }, onSqlDelightClick = {
+                navController.navigate(route = "SQLDelightMyLists")
+            })
         }
         composable(route = "MyLists") {
             MyListsScreen(onListClick = { navController.navigate(route = "ListDetails/${it}") })
@@ -29,6 +32,9 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
                     navController.popBackStack()
                 }
             )
+        }
+        composable(route = "SQLDelightMyLists") {
+            SQLDelightListsScreen(onListClick = { })
         }
     }
 }

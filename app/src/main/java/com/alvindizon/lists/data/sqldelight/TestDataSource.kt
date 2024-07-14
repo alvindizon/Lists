@@ -13,6 +13,8 @@ import javax.inject.Singleton
 @Singleton
 class TestDataSource @Inject constructor(private val testDatabase: TestDatabase) {
 
+    fun getAllLists() = testDatabase.listQueries.getAllLists().asFlow().mapToList(Dispatchers.IO)
+
     suspend fun insertList(listName: String, listId: Long) {
         withContext(Dispatchers.IO) {
             testDatabase.listQueries.insert(listId, listName)
