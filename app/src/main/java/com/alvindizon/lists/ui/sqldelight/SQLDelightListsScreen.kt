@@ -49,6 +49,9 @@ fun SQLDelightListsScreen(
                             .padding(8.dp)
                             .clickable { onListClick(item.id) }) {
                             Text(text = item.name)
+                            Button(onClick = { viewModel.deleteList(item.id) }) {
+                                Text(text = "Delete")
+                            }
                         }
                     }
                 }

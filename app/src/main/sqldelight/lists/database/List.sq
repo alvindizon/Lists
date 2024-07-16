@@ -21,3 +21,7 @@ DELETE FROM MyListEntity;
 getAllLists:
 SELECT * FROM MyListEntity;
 
+deleteById:
+DELETE FROM MyListEntity
+WHERE listId = :listId;
+

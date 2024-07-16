@@ -77,6 +77,12 @@ class SQLDelightMainViewModel @Inject constructor(private val testDataSource: Te
             testDataSource.deleteList()
         }
     }
+
+    fun deleteList(id: Long) {
+        viewModelScope.launch {
+            testDataSource.deleteListById(id)
+        }
+    }
 }
 
 fun lists.database.MyListEntity.toUiModel() = MyList(

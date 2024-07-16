@@ -45,4 +45,10 @@ class TestDataSource @Inject constructor(private val testDatabase: TestDatabase)
         }
     }
 
+    suspend fun deleteListById(itemId: Long) {
+        withContext(Dispatchers.IO) {
+            testDatabase.listQueries.deleteById(itemId)
+        }
+    }
+
 }

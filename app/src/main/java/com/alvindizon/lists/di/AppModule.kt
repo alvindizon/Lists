@@ -2,6 +2,7 @@ package com.alvindizon.lists.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.alvindizon.lists.data.room.MyListDao
@@ -30,7 +31,12 @@ object AppModule {
     @Provides
     @Singleton
     fun provideSqlDriver(@ApplicationContext context: Context): SqlDriver {
-        return AndroidSqliteDriver(TestDatabase.Schema, context, "my_list.db")
+        return AndroidSqliteDriver(TestDatabase.Schema, context, "my_list.db",
+            callback = object : AndroidSqliteDriver.Callback(TestDatabase.Schema) {
+                override fun onOpen(db: SupportSQLiteDatabase) {
+                    db.setForeignKeyConstraintsEnabled(true)
+                }
+            })
     }
 
     @Provides
