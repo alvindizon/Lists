@@ -6,4 +6,5 @@ import androidx.room.RoomDatabase
 @Database(entities = [MyListEntity::class, MyListItemEntity::class], version = 1)
 abstract class MyListDatabase : RoomDatabase() {
     abstract fun myListDao(): MyListDao
+    abstract fun myListItemDao(): MyListItemDao
 }

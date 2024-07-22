@@ -7,6 +7,7 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.alvindizon.lists.data.room.MyListDao
 import com.alvindizon.lists.data.room.MyListDatabase
+import com.alvindizon.lists.data.room.MyListItemDao
 import com.alvindizon.lists.data.sqldelight.TestDatabase
 import dagger.Module
 import dagger.Provides
@@ -27,6 +28,10 @@ object AppModule {
     @Provides
     @Singleton
     fun myListDao(database: MyListDatabase): MyListDao = database.myListDao()
+
+    @Provides
+    @Singleton
+    fun myListItemDao(database: MyListDatabase): MyListItemDao = database.myListItemDao()
 
     @Provides
     @Singleton
